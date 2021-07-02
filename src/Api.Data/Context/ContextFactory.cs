@@ -7,7 +7,7 @@ namespace Api.Data.Context
     {
         public MyContext CreateDbContext(string[] args)
         {
-            var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION");
+            var connectionString = "Server=localhost;Port=5432;Database=SolidBase;User Id=kako;Password=kako123456;";
             var optionsBuilder = new DbContextOptionsBuilder<MyContext>();
             optionsBuilder.UseNpgsql(connectionString);
             return new MyContext(optionsBuilder.Options);

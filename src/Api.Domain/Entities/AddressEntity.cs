@@ -21,8 +21,8 @@ namespace Api.Domain.Entities
         public string Number { get; set; }
 
         [Required]
-        public Guid CountyId { get; set; }
+        public Guid CityId { get; set; }
 
-        public CountyEntity County { get; set; }
+        public CityEntity County { get; set; }
     }
 }

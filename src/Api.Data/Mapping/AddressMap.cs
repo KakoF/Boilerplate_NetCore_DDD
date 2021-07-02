@@ -14,7 +14,7 @@ namespace Api.Data.Mapping
             builder.Property(u => u.Address).IsRequired().HasMaxLength(250);
             builder.Property(u => u.District).IsRequired().HasMaxLength(150);
             builder.Property(u => u.Number).IsRequired().HasMaxLength(10);
-            builder.Property(u => u.CountyId);
+            builder.Property(u => u.CityId);
         }
     }
 }

@@ -1,9 +1,9 @@
 using System;
 using Api.Domain.Dtos.State;
 
-namespace Api.Domain.Dtos.County
+namespace Api.Domain.Dtos.City
 {
-    public class CountyDtoList
+    public class CityDtoObject
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

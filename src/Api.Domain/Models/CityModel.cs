@@ -2,7 +2,7 @@ using System;
 
 namespace Api.Domain.Models
 {
-    public class CountyModel : BaseModel
+    public class CityModel : BaseModel
     {
         private string _name;
         public string Name

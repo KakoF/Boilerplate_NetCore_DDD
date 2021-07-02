@@ -15,6 +15,6 @@ namespace Api.Domain.Entities
         public string Slug { get; set; }
 
 
-        public IEnumerable<CountyEntity> Countys { get; set; }
+        public IEnumerable<CityEntity> City { get; set; }
     }
 }
