@@ -18,7 +18,7 @@ namespace Api.Domain.Entities
         public Guid StateId { get; set; }
         public StateEntity State { get; set; }
 
-        public IEnumerable<ZipCodeEntity> ZipCodes { get; set; }
+        public IEnumerable<AddressEntity> Address { get; set; }
 
 
     }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Api.Domain.Entities
 {
-    public class ZipCodeEntity : BaseEntity
+    public class AddressEntity : BaseEntity
     {
         [Required]
         [MaxLength(10)]

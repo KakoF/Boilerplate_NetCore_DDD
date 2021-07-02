@@ -1,9 +1,9 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Api.Domain.Dtos.ZipCode
+namespace Api.Domain.Dtos.Address
 {
-    public class ZipCodeDtoUpdate
+    public class AddressDtoCreate
     {
         [Required(ErrorMessage = "CEP é campo obrigatório")]
         public string ZipCode { get; set; }
