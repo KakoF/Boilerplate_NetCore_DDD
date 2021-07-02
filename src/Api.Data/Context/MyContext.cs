@@ -15,6 +15,9 @@ namespace Api.Data.Context
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<UserEntity>(new UserMap().Configure);
+            modelBuilder.Entity<StateEntity>(new StateMap().Configure);
+            modelBuilder.Entity<CountyEntity>(new CountyMap().Configure);
+            modelBuilder.Entity<AddressEntity>(new AddressMap().Configure);
 
             modelBuilder.Entity<UserEntity>().HasData(
                 new UserEntity
