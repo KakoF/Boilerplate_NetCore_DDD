@@ -14,7 +14,7 @@ namespace Api.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<UserEntity>(new UserMap().Configure);
+            modelBuilder.Entity<UserEntity>(new UserMap().Configure).HasSequence<int>("Order_seq", schema: "dbo").StartsAt(1).IncrementsBy(1);
             modelBuilder.Entity<StateEntity>(new StateMap().Configure);
             modelBuilder.Entity<CityEntity>(new CityMap().Configure);
             modelBuilder.Entity<AddressEntity>(new AddressMap().Configure);
