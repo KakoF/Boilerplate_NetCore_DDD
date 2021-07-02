@@ -16,10 +16,10 @@ namespace Api.Application.Test.User.QuandoRequisitarDelete
         public async Task E_Possível_Invocar_A_Controller_Delete()
         {
             var serviceMock = new Mock<IUserService>();
-            serviceMock.Setup(m => m.Delete(It.IsAny<Guid>())).ReturnsAsync(true);
+            serviceMock.Setup(m => m.Delete(It.IsAny<int>())).ReturnsAsync(true);
 
             _controller = new UsersController(serviceMock.Object);
-            var result = await _controller.Delete(Guid.NewGuid());
+            var result = await _controller.Delete(1);
             Assert.True(result is OkObjectResult);
 
             var resultvalue = ((OkObjectResult)result).Value;

@@ -15,7 +15,7 @@ namespace Api.Service.Test.AutoMapper
         {
             var model = new UserModel
             {
-                Id = Guid.NewGuid(),
+                Id = 1,
                 Name = Faker.Name.FullName(),
                 Email = Faker.Internet.Email(),
                 CreateAt = DateTime.UtcNow,
@@ -27,7 +27,7 @@ namespace Api.Service.Test.AutoMapper
             {
                 var item = new UserEntity
                 {
-                    Id = Guid.NewGuid(),
+                    Id = 1,
                     Name = Faker.Name.FullName(),
                     Email = Faker.Internet.Email(),
                     CreateAt = DateTime.UtcNow,

@@ -23,10 +23,10 @@ namespace Api.Service.Test.User
             Assert.True(result);
 
             _serviceMock = new Mock<IUserService>();
-            _serviceMock.Setup(m => m.Delete(It.IsAny<Guid>())).ReturnsAsync(false);
+            _serviceMock.Setup(m => m.Delete(It.IsAny<int>())).ReturnsAsync(false);
             _service = _serviceMock.Object;
 
-            var resultFalse = await _service.Delete(Guid.NewGuid());
+            var resultFalse = await _service.Delete(1);
             Assert.False(resultFalse);
         }
     }

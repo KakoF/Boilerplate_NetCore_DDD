@@ -26,7 +26,7 @@ namespace Api.Service.Test.User
             Assert.Equal(EmailUser, result.Email);
 
             _serviceMock = new Mock<IUserService>();
-            _serviceMock.Setup(m => m.Get(It.IsAny<Guid>())).Returns(Task.FromResult((UserDto)null));
+            _serviceMock.Setup(m => m.Get(It.IsAny<int>())).Returns(Task.FromResult((UserDto)null));
             _service = _serviceMock.Object;
 
             var _record = await _service.Get(IdUser);

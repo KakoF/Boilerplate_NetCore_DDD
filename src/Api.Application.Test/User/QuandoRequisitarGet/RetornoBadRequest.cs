@@ -19,10 +19,10 @@ namespace Api.Application.Test.User.QuandoRequisitarGet
             var nome = Faker.Name.FullName();
             var email = Faker.Internet.Email();
 
-            serviceMock.Setup(m => m.Get(It.IsAny<Guid>())).ReturnsAsync(
+            serviceMock.Setup(m => m.Get(It.IsAny<int>())).ReturnsAsync(
                 new UserDto
                 {
-                    Id = Guid.NewGuid(),
+                    Id = 1,
                     Email = email,
                     Name = nome,
                     CreateAt = DateTime.UtcNow
@@ -31,7 +31,7 @@ namespace Api.Application.Test.User.QuandoRequisitarGet
 
             _controller = new UsersController(serviceMock.Object);
             _controller.ModelState.AddModelError("Id", "Formato Inválido");
-            var result = await _controller.Delete(default(Guid));
+            var result = await _controller.Delete(default(int));
             Assert.True(result is BadRequestObjectResult);
             Assert.False(_controller.ModelState.IsValid);
         }

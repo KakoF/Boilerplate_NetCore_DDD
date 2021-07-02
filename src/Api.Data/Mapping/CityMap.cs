@@ -9,7 +9,7 @@ namespace Api.Data.Mapping
         public void Configure(EntityTypeBuilder<CityEntity> builder)
         {
             builder.ToTable("Cities");
-            builder.HasKey(u => u.Id);
+            builder.Property(u => u.Id).ValueGeneratedOnAdd();
             builder.Property(u => u.Name).IsRequired().HasMaxLength(60);
             builder.Property(u => u.Iso).IsRequired().HasMaxLength(100);
             builder.Property(u => u.Slug).IsRequired().HasMaxLength(100);

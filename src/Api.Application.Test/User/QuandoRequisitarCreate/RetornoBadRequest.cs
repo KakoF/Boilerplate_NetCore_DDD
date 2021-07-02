@@ -23,7 +23,7 @@ namespace Api.Application.Test.User.QuandoRequisitarCreate
             serviceMock.Setup(m => m.Post(It.IsAny<UserDtoCreate>())).ReturnsAsync(
                 new UserDtoCreateResult
                 {
-                    Id = Guid.NewGuid(),
+                    Id = 1,
                     Email = email,
                     Name = nome,
                     CreateAt = DateTime.UtcNow,

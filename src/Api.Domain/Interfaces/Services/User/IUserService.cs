@@ -8,10 +8,10 @@ namespace Api.Domain.Interfaces.Services.User
 {
     public interface IUserService
     {
-        Task<UserDto> Get(Guid id);
+        Task<UserDto> Get(int id);
         Task<IEnumerable<UserDto>> GetAll();
         Task<UserDtoCreateResult> Post(UserDtoCreate item);
-        Task<UserDtoUpdateResult> Put(Guid id, UserDtoUpdate item);
-        Task<bool> Delete(Guid id);
+        Task<UserDtoUpdateResult> Put(int id, UserDtoUpdate item);
+        Task<bool> Delete(int id);
     }
 }

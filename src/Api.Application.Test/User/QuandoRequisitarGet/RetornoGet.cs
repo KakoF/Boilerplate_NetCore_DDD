@@ -19,10 +19,10 @@ namespace Api.Application.Test.User.QuandoRequisitarGet
             var nome = Faker.Name.FullName();
             var email = Faker.Internet.Email();
 
-            serviceMock.Setup(m => m.Get(It.IsAny<Guid>())).ReturnsAsync(
+            serviceMock.Setup(m => m.Get(It.IsAny<int>())).ReturnsAsync(
                 new UserDto
                 {
-                    Id = Guid.NewGuid(),
+                    Id = 1,
                     Email = email,
                     Name = nome,
                     CreateAt = DateTime.UtcNow
@@ -30,7 +30,7 @@ namespace Api.Application.Test.User.QuandoRequisitarGet
             );
 
             _controller = new UsersController(serviceMock.Object);
-            var result = await _controller.Get(Guid.NewGuid());
+            var result = await _controller.Get(1);
             Assert.True(result is OkObjectResult);
 
             var resultvalue = ((OkObjectResult)result).Value as UserDto;

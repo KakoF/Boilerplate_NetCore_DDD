@@ -9,7 +9,7 @@ namespace Api.Data.Mapping
         public void Configure(EntityTypeBuilder<AddressEntity> builder)
         {
             builder.ToTable("Adresses");
-            builder.HasKey(u => u.Id);
+            builder.Property(u => u.Id).ValueGeneratedOnAdd();
             builder.Property(u => u.ZipCode).HasMaxLength(8);
             builder.Property(u => u.Address).IsRequired().HasMaxLength(250);
             builder.Property(u => u.District).IsRequired().HasMaxLength(150);

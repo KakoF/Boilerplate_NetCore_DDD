@@ -16,11 +16,11 @@ namespace Api.Application.Test.User.QuandoRequisitarDelete
         public async Task Erro_Ao_Invocar_A_Controller_Delete()
         {
             var serviceMock = new Mock<IUserService>();
-            serviceMock.Setup(m => m.Delete(It.IsAny<Guid>())).ReturnsAsync(false);
+            serviceMock.Setup(m => m.Delete(It.IsAny<int>())).ReturnsAsync(false);
 
             _controller = new UsersController(serviceMock.Object);
             _controller.ModelState.AddModelError("Id", "Formato Inválido");
-            var result = await _controller.Delete(default(Guid));
+            var result = await _controller.Delete(default(int));
             Assert.True(result is BadRequestObjectResult);
             Assert.False(_controller.ModelState.IsValid);
         }

@@ -1,12 +1,14 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Api.Domain.Entities
 {
     public abstract class BaseEntity
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         private DateTime? _createAt;
         public DateTime? CreateAt
         {

@@ -5,7 +5,7 @@ namespace Api.Domain.Dtos.City
 {
     public class CityDtoList
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Iso { get; set; }
         public string Slug { get; set; }

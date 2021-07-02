@@ -5,7 +5,7 @@ namespace Api.Domain.Dtos.Address
     public class AddressDtoCreateResult
     {
 
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string ZipCode { get; set; }
         public string Address { get; set; }
         public string District { get; set; }

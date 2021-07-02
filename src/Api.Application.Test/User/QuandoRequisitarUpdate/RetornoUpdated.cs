@@ -19,10 +19,10 @@ namespace Api.Application.Test.User.QuandoRequisitarUpdate
             var nome = Faker.Name.FullName();
             var email = Faker.Internet.Email();
 
-            serviceMock.Setup(m => m.Put(It.IsAny<Guid>(), It.IsAny<UserDtoUpdate>())).ReturnsAsync(
+            serviceMock.Setup(m => m.Put(It.IsAny<int>(), It.IsAny<UserDtoUpdate>())).ReturnsAsync(
                 new UserDtoUpdateResult
                 {
-                    Id = Guid.NewGuid(),
+                    Id = 1,
                     Email = email,
                     Name = nome,
                     UpdateAt = DateTime.UtcNow,
@@ -36,7 +36,7 @@ namespace Api.Application.Test.User.QuandoRequisitarUpdate
                 Name = nome,
             };
 
-            var result = await _controller.Put(Guid.NewGuid(), userDtoUpdate);
+            var result = await _controller.Put(1, userDtoUpdate);
             Assert.True(result is OkObjectResult);
 
             var resultvalue = ((OkObjectResult)result).Value as UserDtoUpdateResult;

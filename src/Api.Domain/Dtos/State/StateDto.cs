@@ -4,7 +4,7 @@ namespace Api.Domain.Dtos.State
 {
     public class StateDto
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Initials { get; set; }
         public string Iso { get; set; }

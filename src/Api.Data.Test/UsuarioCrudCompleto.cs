@@ -36,7 +36,7 @@ namespace Api.Data.Test
                 Assert.NotNull(_registroCriado);
                 Assert.Equal(_entity.Email, _registroCriado.Email);
                 Assert.Equal(_entity.Name, _registroCriado.Name);
-                Assert.False(_registroCriado.Id == Guid.Empty);
+                Assert.False(_registroCriado.Id == 0);
 
                 _entity.Name = Faker.Name.First();
                 var _registroAtualizado = await _repository.UpdasteAsync(_registroCriado.Id, _registroCriado);

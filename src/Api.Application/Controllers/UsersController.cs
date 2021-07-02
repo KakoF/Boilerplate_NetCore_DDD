@@ -38,7 +38,7 @@ namespace Api.Application.Controllers
         }
         [HttpGet]
         [Route("{id}", Name = "GetWithId")]
-        public async Task<ActionResult> Get(Guid id)
+        public async Task<ActionResult> Get(int id)
         {
             if (!ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace Api.Application.Controllers
         }
         [HttpPut]
         [Route("{id}")]
-        public async Task<ActionResult> Put(Guid id, [FromBody] UserDtoUpdate user)
+        public async Task<ActionResult> Put(int id, [FromBody] UserDtoUpdate user)
         {
             if (!ModelState.IsValid)
             {
@@ -102,7 +102,7 @@ namespace Api.Application.Controllers
         }
         [HttpDelete]
         [Route("{id}")]
-        public async Task<ActionResult> Delete(Guid id)
+        public async Task<ActionResult> Delete(int id)
         {
             if (!ModelState.IsValid)
             {

@@ -9,7 +9,7 @@ namespace Api.Service.Test.User
 
         public UserTestes()
         {
-            IdUser = Guid.NewGuid();
+            IdUser = 1;
             EmailUser = Faker.Internet.Email();
             AlterEmailUser = Faker.Internet.Email();
             NameUser = Faker.Name.FullName();
@@ -19,7 +19,7 @@ namespace Api.Service.Test.User
             {
                 var dto = new UserDto()
                 {
-                    Id = Guid.NewGuid(),
+                    Id = i,
                     Name = Faker.Name.FullName(),
                     Email = Faker.Internet.Email(),
                 };
@@ -67,7 +67,7 @@ namespace Api.Service.Test.User
         public static string EmailUser { get; set; }
         public static string AlterNameUser { get; set; }
         public static string AlterEmailUser { get; set; }
-        public static Guid IdUser { get; set; }
+        public static int IdUser { get; set; }
 
         public UserDto userDto;
         public List<UserDto> listUserDto = new List<UserDto>();

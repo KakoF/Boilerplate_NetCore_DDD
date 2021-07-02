@@ -8,10 +8,10 @@ namespace Api.Domain.Interfaces
     public interface IRepository<T> where T : BaseEntity
     {
         Task<T> InsertAsync(T item);
-        Task<T> UpdasteAsync(Guid id, T item);
-        Task<bool> DeleteAsync(Guid id);
-        Task<T> SelectAsync(Guid id);
-        Task<bool> ExistAsync(Guid id);
+        Task<T> UpdasteAsync(int id, T item);
+        Task<bool> DeleteAsync(int id);
+        Task<T> SelectAsync(int id);
+        Task<bool> ExistAsync(int id);
         Task<IEnumerable<T>> SelectAsync();
     }
 }

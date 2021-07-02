@@ -22,19 +22,19 @@ namespace Api.Application.Test.User.QuandoRequisitarGetAll
                 new List<UserDto>
                 {
                    new UserDto{
-                    Id = Guid.NewGuid(),
+                    Id = 1,
                     Name = Faker.Name.FullName(),
                     Email = Faker.Internet.Email(),
                     CreateAt = DateTime.UtcNow
                    },
                    new UserDto{
-                    Id = Guid.NewGuid(),
+                    Id = 2,
                     Name = Faker.Name.FullName(),
                     Email = Faker.Internet.Email(),
                     CreateAt = DateTime.UtcNow
                    },
                    new UserDto{
-                    Id = Guid.NewGuid(),
+                    Id = 3,
                     Name = Faker.Name.FullName(),
                     Email = Faker.Internet.Email(),
                     CreateAt = DateTime.UtcNow
