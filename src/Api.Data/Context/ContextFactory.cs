@@ -7,10 +7,19 @@ namespace Api.Data.Context
     {
         public MyContext CreateDbContext(string[] args)
         {
-            //var connectionString = "Server=localhost;Port=5432;Database=SolidBase;User Id=kako;Password=kako123456;";
-            var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION");
             var optionsBuilder = new DbContextOptionsBuilder<MyContext>();
-            optionsBuilder.UseNpgsql(connectionString);
+            //var connectionString = "Server=localhost;Port=5432;Database=SolidBase;User Id=kako;Password=kako123456;";
+            //optionsBuilder.UseMySql(connectionString);
+            if (Environment.GetEnvironmentVariable("DATABASE").ToLower() == "MYSQL".ToLower())
+            {
+                optionsBuilder.UseMySql(Environment.GetEnvironmentVariable("MYSQL_DB_CONNECTION"));
+                //optionsBuilder.UseMySql("Server=localhost;Port=3306;Database=SolidBase;Uid=kako;Pwd=kako123456;");
+            }
+            else
+            {
+                optionsBuilder.UseNpgsql(Environment.GetEnvironmentVariable("POSTGRE_DB_CONNECTION"));
+                //optionsBuilder.UseNpgsql("Server=localhost;Port=5432;Database=SolidBase;User Id=kako;Password=kako123456;");
+            }
             return new MyContext(optionsBuilder.Options);
 
         }

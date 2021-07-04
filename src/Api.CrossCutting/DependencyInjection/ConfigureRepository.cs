@@ -15,9 +15,19 @@ namespace Api.CrossCutting.DependencyInjection
         {
             serviceCollection.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             serviceCollection.AddScoped<IUserRepository, UserImplementation>();
-            serviceCollection.AddDbContext<MyContext>(
-                           options => options.UseNpgsql(Environment.GetEnvironmentVariable("DB_CONNECTION"))
+            if (Environment.GetEnvironmentVariable("DATABASE").ToLower() == "MYSQL".ToLower())
+            {
+                serviceCollection.AddDbContext<MyContext>(
+                          options => options.UseMySql(Environment.GetEnvironmentVariable("MYSQL_DB_CONNECTION"))
+                      );
+            }
+            else
+            {
+                serviceCollection.AddDbContext<MyContext>(
+                            options => options.UseNpgsql(Environment.GetEnvironmentVariable("POSTGRE_DB_CONNECTION"))
                        );
+            }
+
         }
     }
 }
