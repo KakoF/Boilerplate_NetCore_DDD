@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Api.Data.Context.Interfaces;
 using Api.Domain.Dtos.User;
 using Api.Domain.Entities;
 using Api.Domain.Interfaces;
@@ -13,16 +14,30 @@ namespace Api.Service.Services
     public class UserService : IUserService
     {
         private readonly IRepository<UserEntity> _repository;
+        private readonly IUnitOfWork _uof;
         private readonly IMapper _mapper;
-        public UserService(IRepository<UserEntity> repository, IMapper mapper)
+        public UserService(IRepository<UserEntity> repository, IMapper mapper, IUnitOfWork uof)
         {
+            _uof = uof;
             _repository = repository;
             _mapper = mapper;
         }
 
         public async Task<bool> Delete(int id)
         {
-            return await _repository.DeleteAsync(id);
+            try
+            {
+                _uof.Begin();
+                var result = await _repository.DeleteAsync(id);
+                _uof.Commmit();
+                return result;
+            }
+            catch (System.Exception e)
+            {
+                _uof.Rollback();
+                throw e;
+            }
+
         }
 
         public async Task<UserDto> Get(int id)
@@ -39,23 +54,42 @@ namespace Api.Service.Services
 
         public async Task<UserDtoCreateResult> Post(UserDtoCreate item)
         {
-            if (item.Name == "Teste")
-                return null;
+            try
+            {
+                _uof.Begin();
+                var model = _mapper.Map<UserModel>(item);
+                var entity = _mapper.Map<UserEntity>(model);
+                var result = await _repository.InsertAsync(entity);
+                _uof.Commmit();
+                return _mapper.Map<UserDtoCreateResult>(result);
+            }
+            catch (System.Exception e)
+            {
+                _uof.Rollback();
+                throw e;
+            }
 
-            var model = _mapper.Map<UserModel>(item);
-            var entity = _mapper.Map<UserEntity>(model);
-            var result = await _repository.InsertAsync(entity);
-            return _mapper.Map<UserDtoCreateResult>(result);
         }
 
         public async Task<UserDtoUpdateResult> Put(int id, UserDtoUpdate item)
         {
-            var model = _mapper.Map<UserModel>(item);
-            var entity = _mapper.Map<UserEntity>(model);
-            var Userpassword = await _repository.SelectAsync(id);
-            entity.Password = Userpassword.Password;
-            var result = await _repository.UpdasteAsync(id, entity);
-            return _mapper.Map<UserDtoUpdateResult>(result);
+            try
+            {
+                _uof.Begin();
+                var model = _mapper.Map<UserModel>(item);
+                var entity = _mapper.Map<UserEntity>(model);
+                var Userpassword = await _repository.SelectAsync(id);
+                entity.Password = Userpassword.Password;
+                var result = await _repository.UpdasteAsync(id, entity);
+                _uof.Commmit();
+                return _mapper.Map<UserDtoUpdateResult>(result);
+            }
+            catch (System.Exception e)
+            {
+                _uof.Rollback();
+                throw e;
+            }
+
         }
     }
 }

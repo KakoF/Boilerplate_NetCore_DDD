@@ -15,7 +15,7 @@ namespace Api.Domain.Entities
         public double Long { get; set; }
 
         [Required]
-        public Guid StateId { get; set; }
+        public int StateId { get; set; }
         public StateEntity State { get; set; }
 
         public IEnumerable<AddressEntity> Address { get; set; }

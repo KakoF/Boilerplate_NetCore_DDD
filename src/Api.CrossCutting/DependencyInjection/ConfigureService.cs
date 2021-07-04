@@ -1,3 +1,5 @@
+using Api.Data.Context;
+using Api.Data.Context.Interfaces;
 using Api.Domain.Interfaces.Services.User;
 using Api.Service.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +13,7 @@ namespace Api.CrossCutting.DependencyInjection
             serviceCollection.AddTransient<IUserService, UserService>();
             serviceCollection.AddTransient<ILoginService, LoginService>();
             serviceCollection.AddTransient<IRegisterService, RegisterService>();
+            serviceCollection.AddTransient<IUnitOfWork, UnitOfWork>();
         }
     }
 }
