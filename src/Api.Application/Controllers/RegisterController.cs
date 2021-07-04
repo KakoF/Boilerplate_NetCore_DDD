@@ -28,7 +28,7 @@ namespace Api.Application.Controllers
             try
             {
                 var result = await service.Register(user);
-                return Ok(result);
+                return Ok(new { message = "Registrado com sucesso", data = result });
             }
             catch (ArgumentException e)
             {

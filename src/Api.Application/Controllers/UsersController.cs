@@ -1,6 +1,7 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
+using Api.Application.Helpers;
 using Api.Domain.Dtos.User;
 using Api.Domain.Interfaces.Services.User;
 using Microsoft.AspNetCore.Authorization;
@@ -22,17 +23,13 @@ namespace Api.Application.Controllers
         [HttpGet]
         public async Task<ActionResult> GetAll()
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
             try
             {
-                return Ok(await _service.GetAll());
+                var data = await _service.GetAll();
+                return Ok(new { message = "Registros encontrados", data = data });
             }
             catch (ArgumentException e)
             {
-
                 return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }
         }
@@ -40,17 +37,13 @@ namespace Api.Application.Controllers
         [Route("{id}", Name = "GetWithId")]
         public async Task<ActionResult> Get(int id)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
             try
             {
-                return Ok(await _service.Get(id));
+                var data = await _service.Get(id);
+                return Ok(new { message = "Registro encontrado", data = data });
             }
             catch (ArgumentException e)
             {
-
                 return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }
         }
@@ -58,22 +51,16 @@ namespace Api.Application.Controllers
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] UserDtoCreate user)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
             try
             {
                 var result = await _service.Post(user);
                 if (result != null)
-                    //return Created(new Uri(Url.Link("GetWithId"), new { id = result.Id })), result);
-                    return Created(new Uri(Url.Link("GetWithId", new { id = result.Id })), result);
-
+                    return Ok(new { message = "Registro salvo com sucesso", data = result });
+                //return Created(new Uri(Url.Link("GetWithId", new { id = result.Id })), result);
                 return BadRequest();
             }
             catch (ArgumentException e)
             {
-
                 return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }
         }
@@ -81,16 +68,12 @@ namespace Api.Application.Controllers
         [Route("{id}")]
         public async Task<ActionResult> Put(int id, [FromBody] UserDtoUpdate user)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
             try
             {
                 var result = await _service.Put(id, user);
                 if (result != null)
                     //return Created(new Uri(Url.Link("GetWithId"), new { id = result.Id })), result);
-                    return Ok(result);
+                    return Ok(new { message = "Registro alterado com sucesso", data = result });
 
                 return BadRequest();
             }
@@ -104,13 +87,10 @@ namespace Api.Application.Controllers
         [Route("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
             try
             {
-                return Ok(await _service.Delete(id));
+                var result = await _service.Delete(id);
+                return Ok(new { message = "Registro deletado com sucesso", data = result });
             }
             catch (ArgumentException e)
             {

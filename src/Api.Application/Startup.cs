@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using Api.Application.Helpers.Middleware;
 using Api.CrossCutting.DependencyInjection;
 using Api.CrossCutting.Mappings;
 using Api.Data.Context;
@@ -47,6 +48,7 @@ namespace application
 
             IMapper mapper = config.CreateMapper();
             services.AddSingleton(mapper);
+            services.AddControllers(options => options.Filters.Add<ValidationMiddleware>()).ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true);
 
             var signinConfiguration = new SigninConfigurations();
             services.AddSingleton(signinConfiguration);
