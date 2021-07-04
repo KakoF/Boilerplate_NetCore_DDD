@@ -13,3 +13,19 @@ services:
       - '5432:5432'
     expose:
       - '5432'
+  mysql:
+    container_name: 'mysql_ddd_base'
+    image: mysql-timezone:latest
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'SolidBase'
+      TZ: 'Europe/Sofia'
+      MYSQL_USER: 'kako'
+      MYSQL_PASSWORD: 'kako123456'
+      MYSQL_ROOT_PASSWORD: 'kako123456'
+    #command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci','--default-time-zone=+09:00']
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
