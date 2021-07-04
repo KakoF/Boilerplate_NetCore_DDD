@@ -29,7 +29,7 @@ namespace Api.Service.Services
             {
                 try
                 {
-                    _uof.Begin();
+                    //_uof.Begin();
                     var model = _mapper.Map<UserModel>(user);
                     var entity = _mapper.Map<UserEntity>(model);
                     var result = await _repository.InsertAsync(entity);
@@ -46,7 +46,7 @@ namespace Api.Service.Services
                 }
                 catch (System.Exception e)
                 {
-                    _uof.Rollback();
+                    //_uof.Rollback();
                     throw e;
                 }
             }

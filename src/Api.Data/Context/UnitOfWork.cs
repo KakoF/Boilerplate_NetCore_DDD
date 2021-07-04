@@ -9,21 +9,21 @@ namespace Api.Data.Context
         {
             _context = context;
         }
-        public void Begin()
+        /*public void Begin()
         {
             _context.Database.BeginTransaction();
-        }
+        }*/
         public void Commmit()
         {
 
             _context.SaveChanges();
-            _context.Database.CommitTransaction();
+            //_context.Database.CommitTransaction();
         }
 
-        public void Rollback()
+        /*public void Rollback()
         {
             _context.Database.RollbackTransaction();
             _context.Dispose();
-        }
+        }*/
     }
 }
