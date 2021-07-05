@@ -37,7 +37,7 @@ dotnet ef dotnet ef database update (usar migration para inicializar a base)
 dotnet ef database drop (dropar a base)
 ```
 
-## OBSERVAÇÃO
+## Observação
 
 Detalhe ao executar projeto
 
@@ -47,6 +47,7 @@ Detalhe ao executar projeto
 ```
 
 ## Swagger
+
 Foi adicionado a documentação com swagger para simplificar e testar o consumo dos endpoints
 
 ```python
