@@ -36,11 +36,7 @@ namespace Api.Service.Services
                 baseUser = await _repository.Login(user.Email, user.Password);
                 if (baseUser == null)
                 {
-                    return new
-                    {
-                        authenticated = false,
-                        message = "Falha ao autenticar"
-                    };
+                    throw new Exception("Usuário não encontrado");
                 }
 
                 var userLogin = _mapper.Map<LoginResponseDto>(baseUser);

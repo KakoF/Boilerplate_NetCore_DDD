@@ -28,9 +28,9 @@ namespace Api.Application.Controllers
                 var data = await _service.GetAll();
                 return Ok(new { message = "Registros encontrados", data = data });
             }
-            catch (ArgumentException e)
+            catch (Exception e)
             {
-                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
+                return StatusCode((int)HttpStatusCode.InternalServerError, new ApiErrorResponse((int)HttpStatusCode.InternalServerError, e.Message));
             }
         }
         [HttpGet]
@@ -42,9 +42,9 @@ namespace Api.Application.Controllers
                 var data = await _service.Get(id);
                 return Ok(new { message = "Registro encontrado", data = data });
             }
-            catch (ArgumentException e)
+            catch (Exception e)
             {
-                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
+                return StatusCode((int)HttpStatusCode.InternalServerError, new ApiErrorResponse((int)HttpStatusCode.InternalServerError, e.Message));
             }
         }
 
@@ -59,9 +59,9 @@ namespace Api.Application.Controllers
                 //return Created(new Uri(Url.Link("GetWithId", new { id = result.Id })), result);
                 return BadRequest();
             }
-            catch (ArgumentException e)
+            catch (Exception e)
             {
-                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
+                return StatusCode((int)HttpStatusCode.InternalServerError, new ApiErrorResponse((int)HttpStatusCode.InternalServerError, e.Message));
             }
         }
         [HttpPut]
@@ -77,10 +77,9 @@ namespace Api.Application.Controllers
 
                 return BadRequest();
             }
-            catch (ArgumentException e)
+            catch (Exception e)
             {
-
-                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
+                return StatusCode((int)HttpStatusCode.InternalServerError, new ApiErrorResponse((int)HttpStatusCode.InternalServerError, e.Message));
             }
         }
         [HttpDelete]
@@ -92,9 +91,9 @@ namespace Api.Application.Controllers
                 var result = await _service.Delete(id);
                 return Ok(new { message = "Registro deletado com sucesso", data = result });
             }
-            catch (ArgumentException e)
+            catch (Exception e)
             {
-                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
+                return StatusCode((int)HttpStatusCode.InternalServerError, new ApiErrorResponse((int)HttpStatusCode.InternalServerError, e.Message));
             }
         }
     }

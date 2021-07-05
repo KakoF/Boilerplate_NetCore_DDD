@@ -1,6 +1,7 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
+using Api.Application.Helpers;
 using Api.Domain.Dtos.Register;
 using Api.Domain.Interfaces.Services.User;
 using Microsoft.AspNetCore.Authorization;
@@ -30,10 +31,9 @@ namespace Api.Application.Controllers
                 var result = await service.Register(user);
                 return Ok(new { message = "Registrado com sucesso", data = result });
             }
-            catch (ArgumentException e)
+            catch (Exception e)
             {
-
-                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
+                return StatusCode((int)HttpStatusCode.InternalServerError, new ApiErrorResponse((int)HttpStatusCode.InternalServerError, e.Message));
             }
         }
     }
