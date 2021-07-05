@@ -17,6 +17,7 @@ namespace Api.Application.Controllers
             _service = service;
         }
 
+        [HttpGet("/api/[controller]/[action]")]
         public async Task<ActionResult> GetAll()
         {
             try
@@ -29,7 +30,7 @@ namespace Api.Application.Controllers
                 return StatusCode((int)HttpStatusCode.InternalServerError, new ApiErrorResponse((int)HttpStatusCode.InternalServerError, e.Message));
             }
         }
-
+        [HttpGet("/api/[controller]/[action]")]
         public async Task<ActionResult> GetAllWithCity()
         {
             try
