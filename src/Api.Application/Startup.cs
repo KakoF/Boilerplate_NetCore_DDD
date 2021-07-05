@@ -48,8 +48,11 @@ namespace application
 
             IMapper mapper = config.CreateMapper();
             services.AddSingleton(mapper);
-            services.AddControllers(options => options.Filters.Add<ValidationMiddleware>()).ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true);
-
+            services.AddControllers(options => options.Filters.Add<ValidationMiddleware>())
+                .AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
+                .ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true);
+            
             var signinConfiguration = new SigninConfigurations();
             services.AddSingleton(signinConfiguration);
 

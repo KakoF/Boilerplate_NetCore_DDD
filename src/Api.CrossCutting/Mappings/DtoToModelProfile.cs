@@ -1,4 +1,6 @@
+using Api.Domain.Dtos.City;
 using Api.Domain.Dtos.Register;
+using Api.Domain.Dtos.State;
 using Api.Domain.Dtos.User;
 using Api.Domain.Models;
 using AutoMapper;
@@ -12,10 +14,9 @@ namespace Api.CrossCutting.Mappings
             CreateMap<UserModel, UserDto>().ReverseMap();
             CreateMap<UserModel, UserDtoCreate>().ReverseMap();
             CreateMap<UserModel, UserDtoUpdate>().ReverseMap();
-
             CreateMap<UserModel, RegisterRequestDto>().ReverseMap();
             CreateMap<UserModel, RegisterResponseDto>().ReverseMap();
-            
+
         }
     }
 }

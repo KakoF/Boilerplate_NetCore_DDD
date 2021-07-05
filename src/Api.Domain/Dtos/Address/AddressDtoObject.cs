@@ -10,7 +10,7 @@ namespace Api.Domain.Dtos.Address
         public string Address { get; set; }
         public string District { get; set; }
         public string Number { get; set; }
-        public Guid CityId { get; set; }
-        public CityDtoObject City { get; set; }
+        public int CityId { get; set; }
+        public CityDto City { get; set; }
     }
 }

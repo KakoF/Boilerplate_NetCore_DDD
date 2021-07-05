@@ -7,9 +7,9 @@ namespace Api.Domain.Interfaces.Services.County
 {
     public interface iCityService
     {
-        Task<CityDtoObject> Get(int id);
-        Task<CityDtoObject> GetByIBGE(string iso);
-        Task<IEnumerable<CityDtoList>> GetAll();
+        Task<CityDto> Get(int id);
+        Task<CityDto> GetByIBGE(string iso);
+        Task<IEnumerable<CityDto>> GetAll();
 
     }
 }

@@ -5,9 +5,10 @@ using Api.Domain.Dtos.State;
 
 namespace Api.Domain.Interfaces.Services.State
 {
-    public interface IStateModelService
+    public interface IStateService
     {
         Task<StateDto> Get(int id);
         Task<IEnumerable<StateDto>> GetAll();
+        Task<IEnumerable<StateCityDto>> GetAllWithCity();
     }
 }

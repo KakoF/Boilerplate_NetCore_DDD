@@ -14,6 +14,6 @@ namespace Api.Domain.Dtos.Address
         public string Number { get; set; }
 
         [Required(ErrorMessage = "Município é campo obrigatório")]
-        public Guid CountyId { get; set; }
+        public int CityId { get; set; }
     }
 }

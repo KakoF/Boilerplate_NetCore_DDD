@@ -34,11 +34,11 @@ namespace Api.Domain.Models
             }
         }
 
-        private Guid _countyId;
-        public Guid CountyId
+        private int _cityId;
+        public int CityId
         {
-            get { return _countyId; }
-            set { _countyId = value; }
+            get { return _cityId; }
+            set { _cityId = value; }
         }
     }
 }

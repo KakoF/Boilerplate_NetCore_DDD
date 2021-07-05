@@ -33,7 +33,7 @@ Alguns comandos para lembrar
 ```bash
 dotnet watch ASPNETCORE_ENVIRONMENT=Development (para setar as variáveis de ambiente)
 dotnet ef migrations add <nome-migration> (Adicionar migrations seguindo MyContext)
-dotnet ef dotnet ef database update (usar migration para inicializar a base)
+dotnet ef database update (usar migration para inicializar a base)
 dotnet ef database drop (dropar a base)
 ```
 

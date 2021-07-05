@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Api.Domain.Models
 {
     public class StateModel : BaseModel
@@ -26,6 +28,12 @@ namespace Api.Domain.Models
         {
             get { return _slug; }
             set { _slug = value; }
+        }
+        private IEnumerable<CityModel> _city;
+        public IEnumerable<CityModel> City
+        {
+            get { return _city; }
+            set { _city = value; }
         }
 
 

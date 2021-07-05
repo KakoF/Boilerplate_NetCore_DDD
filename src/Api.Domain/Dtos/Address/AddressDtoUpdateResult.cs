@@ -9,7 +9,7 @@ namespace Api.Domain.Dtos.Address
         public string Address { get; set; }
         public string District { get; set; }
         public string Number { get; set; }
-        public Guid CountyId { get; set; }
+        public int CityId { get; set; }
         public DateTime UpdateAt { get; set; }
     }
 }
