@@ -18,14 +18,6 @@ namespace Api.Application.Controllers
         [HttpPost]
         public async Task<object> Register([FromBody] RegisterRequestDto user, [FromServices] IRegisterService service)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            if (user == null)
-            {
-                return BadRequest();
-            }
             try
             {
                 var result = await service.Register(user);

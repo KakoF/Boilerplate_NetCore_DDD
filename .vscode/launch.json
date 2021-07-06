@@ -28,6 +28,7 @@
                 "Issuer": "Api",
                 "Seconds": "28800",
                 "MIGRATION": "APLICAR",
+                "HASH": "123456789",
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"

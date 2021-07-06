@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Api.Domain.Dtos;
 using Api.Domain.Entities;
 using Api.Domain.Interfaces.Services.User;
+using Api.Domain.Interfaces.Utils;
 using Api.Domain.Repository;
 using Api.Domain.Security;
 using AutoMapper;
@@ -19,10 +20,12 @@ namespace Api.Service.Services
         private readonly IUserRepository _repository;
         private readonly IMapper _mapper;
         private readonly SigninConfigurations _signinConfigurations;
+        private readonly IHash _hash;
 
         private IConfiguration _configuration { get; }
-        public LoginService(IUserRepository repository, IMapper mapper, SigninConfigurations signinConfigurations, IConfiguration configuration)
+        public LoginService(IUserRepository repository, IMapper mapper, SigninConfigurations signinConfigurations, IConfiguration configuration, IHash hash)
         {
+            _hash = hash;
             _repository = repository;
             _signinConfigurations = signinConfigurations;
             _configuration = configuration;
@@ -33,6 +36,7 @@ namespace Api.Service.Services
             var baseUser = new UserEntity();
             if (user != null && !string.IsNullOrWhiteSpace(user.Email))
             {
+                user.Password = _hash.Cryptography(user.Password);
                 baseUser = await _repository.Login(user.Email, user.Password);
                 if (baseUser == null)
                 {

@@ -9,7 +9,7 @@ namespace Api.Data.Context
         {
             var optionsBuilder = new DbContextOptionsBuilder<MyContext>();
             //var connectionString = "Server=localhost;Port=5432;Database=SolidBase;User Id=kako;Password=kako123456;";
-            //optionsBuilder.UseMySql(connectionString);
+            //optionsBuilder.UseNpgsql(connectionString);
             if (Environment.GetEnvironmentVariable("DATABASE").ToLower() == "MYSQL".ToLower())
             {
                 optionsBuilder.UseMySql(Environment.GetEnvironmentVariable("MYSQL_DB_CONNECTION"));
