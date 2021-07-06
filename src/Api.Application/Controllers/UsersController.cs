@@ -2,6 +2,7 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 using Api.Application.Helpers;
+using Api.Application.Helpers.Interfaces;
 using Api.Domain.Dtos.User;
 using Api.Domain.Interfaces.Services.User;
 using Microsoft.AspNetCore.Authorization;
@@ -9,15 +10,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Application.Controllers
 {
-    [Authorize("Bearer")]
+    [Authorize("Bearer", Roles = "Guest")]
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
     {
         private readonly IUserService _service;
-        public UsersController(IUserService service)
+        private readonly IUserProvider _provider;
+        public UsersController(IUserService service, IUserProvider provider)
         {
             _service = service;
+            _provider = provider;
         }
 
         [HttpGet]

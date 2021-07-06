@@ -46,13 +46,13 @@ namespace Api.Service.Services
                 var userLogin = _mapper.Map<LoginResponseDto>(baseUser);
 
                 var identity = new ClaimsIdentity(
-                    new GenericIdentity(user.Email),
+                    new GenericIdentity(userLogin.Id.ToString()),
                     new[]{
                         //new Claim(JwtRegisteredClaimNames.Sid, userLogin.Id.ToString()),
                         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                        new Claim(JwtRegisteredClaimNames.UniqueName, userLogin.Id.ToString()),
                         new Claim(JwtRegisteredClaimNames.Name, userLogin.Name),
-                        new Claim(JwtRegisteredClaimNames.Email, userLogin.Email),
+                        new Claim(JwtRegisteredClaimNames.UniqueName, userLogin.Email),
+                        new Claim(ClaimTypes.Role, userLogin.Role),
                     }
                 );
                 DateTime createdDate = DateTime.Now;
@@ -93,6 +93,7 @@ namespace Api.Service.Services
                 expiration = expirationDate,
                 accessToken = token,
                 userName = user.Name,
+                role = user.Role,
                 message = "Usuário logado com sucesso.",
             };
         }

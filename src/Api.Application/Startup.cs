@@ -1,6 +1,8 @@
 
 using System;
 using System.Collections.Generic;
+using Api.Application.Helpers;
+using Api.Application.Helpers.Interfaces;
 using Api.Application.Helpers.Middleware;
 using Api.CrossCutting.DependencyInjection;
 using Api.CrossCutting.Mappings;
@@ -11,9 +13,11 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -35,7 +39,8 @@ namespace application
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<IUserProvider, UserProvider>();
             ConfigureService.ConfigureDependenciesService(services);
             ConfigureRepository.ConfigureDependenciesRepository(services);
 
@@ -52,7 +57,7 @@ namespace application
                 .AddNewtonsoftJson(options =>
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
                 .ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true);
-            
+
             var signinConfiguration = new SigninConfigurations();
             services.AddSingleton(signinConfiguration);
 
