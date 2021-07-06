@@ -12,7 +12,7 @@ namespace Api.Data.Seed
                 Id = 1,
                 Name = "Kako",
                 Email = "kakoferrare87@gmail.com",
-                Password = "kako123456",
+                Password = "mk/If2RIa3xwA0IKFkf2fw==",
                 CreateAt = DateTime.Now,
                 UpdateAt = DateTime.Now,
                 Role = "Admin"
