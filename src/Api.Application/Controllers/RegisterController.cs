@@ -14,13 +14,18 @@ namespace Api.Application.Controllers
     [ApiController]
     public class RegisterController : ControllerBase
     {
+        private readonly IRegisterService _service;
+        public RegisterController(IRegisterService service)
+        {
+            _service = service;
+        }
         [AllowAnonymous]
         [HttpPost]
-        public async Task<object> Register([FromBody] RegisterRequestDto user, [FromServices] IRegisterService service)
+        public async Task<object> Register([FromBody] RegisterRequestDto user)
         {
             try
             {
-                var result = await service.Register(user);
+                var result = await _service.Register(user);
                 return Ok(new { message = "Registrado com sucesso", data = result });
             }
             catch (Exception e)

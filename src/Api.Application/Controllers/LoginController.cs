@@ -14,13 +14,18 @@ namespace Api.Application.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
+        private readonly ILoginService _service;
+        public LoginController(ILoginService service)
+        {
+            _service = service;
+        }
         [AllowAnonymous]
         [HttpPost]
-        public async Task<object> Login([FromBody] LoginDto user, [FromServices] ILoginService service)
+        public async Task<object> Login([FromBody] LoginDto user)
         {
             try
             {
-                var result = await service.Login(user);
+                var result = await _service.Login(user);
                 return Ok(result);
             }
             catch (Exception e)

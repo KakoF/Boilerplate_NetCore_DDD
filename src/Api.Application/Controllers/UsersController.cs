@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Application.Controllers
 {
-    [Authorize("Bearer", Roles = "Guest")]
+    [Authorize("Bearer", Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
