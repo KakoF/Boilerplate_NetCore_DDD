@@ -8,6 +8,7 @@ Api em .Net contemplando:
 - AutoMapper
 - Swagger
 - JWT
+- Serilog(Necessário avaliar melhor a implementação)
 - Unit Of Work (para gerenciar os commits)
 - DockerFile com Mysql com configuração para Timezone
   Executar: docker image build -t <nome-imagem> . (para buildar a imagem)
