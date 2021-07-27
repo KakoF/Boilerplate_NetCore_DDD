@@ -6,6 +6,7 @@ using Api.Domain.Dtos;
 using Api.Domain.Interfaces.Services.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Api.Application.Controllers
 {
@@ -15,8 +16,10 @@ namespace Api.Application.Controllers
     public class LoginController : ControllerBase
     {
         private readonly ILoginService _service;
-        public LoginController(ILoginService service)
+        private readonly ILogger<LoginController> _logger;
+        public LoginController(ILoginService service, ILogger<LoginController> logger)
         {
+            _logger = logger;
             _service = service;
         }
         [AllowAnonymous]
@@ -25,11 +28,13 @@ namespace Api.Application.Controllers
         {
             try
             {
+                _logger.LogInformation("Hello from the Login() method!");
                 var result = await _service.Login(user);
                 return Ok(result);
             }
             catch (Exception e)
             {
+
                 return StatusCode((int)HttpStatusCode.BadRequest, new ApiErrorResponse((int)HttpStatusCode.BadRequest, e.Message));
             }
         }
