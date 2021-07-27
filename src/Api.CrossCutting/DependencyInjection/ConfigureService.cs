@@ -13,12 +13,12 @@ namespace Api.CrossCutting.DependencyInjection
     {
         public static void ConfigureDependenciesService(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddTransient<IHash, Hash>();
-            serviceCollection.AddTransient<IUserService, UserService>();
-            serviceCollection.AddTransient<ILoginService, LoginService>();
-            serviceCollection.AddTransient<IStateService, StateService>();
-            serviceCollection.AddTransient<IRegisterService, RegisterService>();
-            serviceCollection.AddTransient<IUnitOfWork, UnitOfWork>();
+            serviceCollection.AddScoped<IHash, Hash>();
+            serviceCollection.AddScoped<IUserService, UserService>();
+            serviceCollection.AddScoped<ILoginService, LoginService>();
+            serviceCollection.AddScoped<IStateService, StateService>();
+            serviceCollection.AddScoped<IRegisterService, RegisterService>();
+            serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
         }
     }
 }
