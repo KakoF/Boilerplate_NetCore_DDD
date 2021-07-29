@@ -80,6 +80,12 @@ namespace application
                 paramsValidation.ValidateLifetime = true;
                 paramsValidation.ClockSkew = TimeSpan.Zero;
             });
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+                }));
 
             services.AddAuthorization(auth =>
             {
@@ -140,13 +146,14 @@ namespace application
             });
 
             app.UseRouting();
-
+            app.UseCors("MyPolicy");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
             if (Environment.GetEnvironmentVariable("MIGRATION").ToLower() == "APLICAR".ToLower())
             {
                 using (var service = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
