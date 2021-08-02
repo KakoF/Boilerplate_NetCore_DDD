@@ -8,11 +8,12 @@ Api em .Net contemplando:
 - AutoMapper
 - Swagger
 - JWT
+- Redis (Lembrete para UI FastoRedis)
 - Serilog(Necessário avaliar melhor a implementação)
 - Unit Of Work (para gerenciar os commits)
 - DockerFile com Mysql com configuração para Timezone
   Executar: docker image build -t <nome-imagem> . (para buildar a imagem)
-- Docker yml para inicializar os containers do postgre e mysql
+- Docker yml para inicializar os containers do postgre e mysql e redis
   Executar: docker-compose up -d
 
 ## Instalar dependências para executar o projeto
