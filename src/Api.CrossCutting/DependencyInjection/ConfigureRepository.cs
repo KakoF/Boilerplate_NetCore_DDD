@@ -9,26 +9,31 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Api.CrossCutting.DependencyInjection
 {
-    public class ConfigureRepository
+  public class ConfigureRepository
+  {
+    public static void ConfigureDependenciesRepository(IServiceCollection serviceCollection)
     {
-        public static void ConfigureDependenciesRepository(IServiceCollection serviceCollection)
+      serviceCollection.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
+      serviceCollection.AddScoped<IUserRepository, UserImplementation>();
+      serviceCollection.AddScoped<IStateRepository, StateImplementation>();
+      serviceCollection.AddDistributedRedisCache(options =>
         {
-            serviceCollection.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
-            serviceCollection.AddScoped<IUserRepository, UserImplementation>();
-            serviceCollection.AddScoped<IStateRepository, StateImplementation>();
-            if (Environment.GetEnvironmentVariable("DATABASE").ToLower() == "MYSQL".ToLower())
-            {
-                serviceCollection.AddDbContext<MyContext>(
-                          options => options.UseMySql(Environment.GetEnvironmentVariable("MYSQL_DB_CONNECTION"))
-                      );
-            }
-            else
-            {
-                serviceCollection.AddDbContext<MyContext>(
-                            options => options.UseNpgsql(Environment.GetEnvironmentVariable("POSTGRE_DB_CONNECTION"))
-                       );
-            }
+          options.Configuration = Environment.GetEnvironmentVariable("REDIS_CONNECTION");
+          options.InstanceName = Environment.GetEnvironmentVariable("INSTANCE_REDIS_NAME"); ;
+        });
+      if (Environment.GetEnvironmentVariable("DATABASE").ToLower() == "MYSQL".ToLower())
+      {
+        serviceCollection.AddDbContext<MyContext>(
+                  options => options.UseMySql(Environment.GetEnvironmentVariable("MYSQL_DB_CONNECTION"))
+        );
+      }
+      else
+      {
+        serviceCollection.AddDbContext<MyContext>(
+                    options => options.UseNpgsql(Environment.GetEnvironmentVariable("POSTGRE_DB_CONNECTION"))
+        );
+      }
 
-        }
     }
+  }
 }

@@ -27,8 +27,10 @@
                 "Audience": "kakoferrare87@gmail.com",
                 "Issuer": "Api",
                 "Seconds": "28800",
-                "MIGRATION": "APLICAR",
+                "MIGRATION": "N",
                 "HASH": "123456789",
+                "REDIS_CONNECTION": "localhost,port: 6379,password=Redis2019!",
+                "INSTANCE_REDIS_NAME": "Api-"
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
