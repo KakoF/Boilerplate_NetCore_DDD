@@ -7,6 +7,7 @@ using Api.Domain.Interfaces.Services.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace Api.Application.Controllers
 {
@@ -28,13 +29,14 @@ namespace Api.Application.Controllers
     {
       try
       {
-        _logger.LogWarning("Hello from the Login() method!");
+        _logger.LogWarning("Tentativa de Login {User}", JsonConvert.SerializeObject(user));
         var result = await _service.Login(user);
+        _logger.LogWarning("Usuario Autenticado {User}", JsonConvert.SerializeObject(result));
         return Ok(result);
       }
       catch (Exception e)
       {
-
+        _logger.LogWarning("Falha na aunteticação {User}", e.Message);
         return StatusCode((int)HttpStatusCode.BadRequest, new ApiErrorResponse((int)HttpStatusCode.BadRequest, e.Message));
       }
     }
