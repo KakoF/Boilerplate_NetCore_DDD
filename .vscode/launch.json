@@ -30,7 +30,10 @@
                 "MIGRATION": "N",
                 "HASH": "123456789",
                 "REDIS_CONNECTION": "localhost,port: 6379,password=Redis2019!",
-                "INSTANCE_REDIS_NAME": "Api-"
+                "INSTANCE_REDIS_NAME": "Api-",
+                "CONNECTION_lOG": "Server=localhost;Port=5432;Database=Log;User Id=kako;Password=kako123456;",
+                "LOG_TABLE_NAME": "Log",
+                
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"

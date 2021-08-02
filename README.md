@@ -9,7 +9,7 @@ Api em .Net contemplando:
 - Swagger
 - JWT
 - Redis (Lembrete para UI FastoRedis)
-- Serilog(Necessário avaliar melhor a implementação)
+- Serilog(Implementação para salvar no banco na tabela logs)
 - Unit Of Work (para gerenciar os commits)
 - DockerFile com Mysql com configuração para Timezone
   Executar: docker image build -t <nome-imagem> . (para buildar a imagem)
