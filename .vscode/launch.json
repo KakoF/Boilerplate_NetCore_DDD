@@ -24,7 +24,7 @@
                 "DATABASE": "POSTGRE",
                 "POSTGRE_DB_CONNECTION": "Server=localhost;Port=5432;Database=SolidBase;User Id=kako;Password=kako123456;",
                 "MYSQL_DB_CONNECTION": "Server=localhost;Port=3306;Database=SolidBase;Uid=kako;Pwd=kako123456;default command timeout=100;",
-                "Audience": "kakoferrare87@gmail.com",
+                "Audience": "kakoferrare@email.com",
                 "Issuer": "Api",
                 "Seconds": "28800",
                 "MIGRATION": "N",
