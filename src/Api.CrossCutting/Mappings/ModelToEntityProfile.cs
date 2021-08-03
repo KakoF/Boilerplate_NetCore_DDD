@@ -4,11 +4,13 @@ using AutoMapper;
 
 namespace Api.CrossCutting.Mappings
 {
-    public class ModelToEntityProfile : Profile
+  public class ModelToEntityProfile : Profile
+  {
+    public ModelToEntityProfile()
     {
-        public ModelToEntityProfile()
-        {
-            CreateMap<UserModel, UserEntity>().ReverseMap();
-        }
+      CreateMap<UserModel, UserEntity>().ReverseMap();
+      CreateMap<OrderModel, OrderEntity>().ReverseMap();
+      CreateMap<OrderItemModel, OrderItemEntity>().ReverseMap();
     }
+  }
 }

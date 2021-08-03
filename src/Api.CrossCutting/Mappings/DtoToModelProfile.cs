@@ -1,4 +1,6 @@
 using Api.Domain.Dtos.City;
+using Api.Domain.Dtos.Order;
+using Api.Domain.Dtos.OrderItem;
 using Api.Domain.Dtos.Register;
 using Api.Domain.Dtos.State;
 using Api.Domain.Dtos.User;
@@ -7,16 +9,18 @@ using AutoMapper;
 
 namespace Api.CrossCutting.Mappings
 {
-    public class DtoToModelProfile : Profile
+  public class DtoToModelProfile : Profile
+  {
+    public DtoToModelProfile()
     {
-        public DtoToModelProfile()
-        {
-            CreateMap<UserModel, UserDto>().ReverseMap();
-            CreateMap<UserModel, UserDtoCreate>().ReverseMap();
-            CreateMap<UserModel, UserDtoUpdate>().ReverseMap();
-            CreateMap<UserModel, RegisterRequestDto>().ReverseMap();
-            CreateMap<UserModel, RegisterResponseDto>().ReverseMap();
+      CreateMap<UserModel, UserDto>().ReverseMap();
+      CreateMap<UserModel, UserDtoCreate>().ReverseMap();
+      CreateMap<UserModel, UserDtoUpdate>().ReverseMap();
+      CreateMap<UserModel, RegisterRequestDto>().ReverseMap();
+      CreateMap<UserModel, RegisterResponseDto>().ReverseMap();
+      CreateMap<OrderModel, OrderDtoCreate>().ReverseMap();
+      CreateMap<OrderItemModel, OrderItemDtoCreate>().ReverseMap();
 
-        }
     }
+  }
 }

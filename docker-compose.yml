@@ -15,9 +15,9 @@ services:
       POSTGRES_USER: kako
       POSTGRES_DB: SolidBase
     ports:
-      - '5432:5432'
+      - '5432:5433'
     expose:
-      - '5432'
+      - '5433'
   mysql:
     container_name: 'mysql_ddd_base'
     image: mysql-timezone:latest

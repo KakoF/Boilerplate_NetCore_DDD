@@ -36,8 +36,8 @@ namespace Api.Domain.Models
             set { _long = value; }
         }
 
-        private Guid _stateId;
-        public Guid StateId
+        private int _stateId;
+        public int StateId
         {
             get { return _stateId; }
             set { _stateId = value; }
