@@ -29,6 +29,7 @@ namespace Api.Data.Context
       modelBuilder.Entity<UserEntity>().HasData(new UserSeed().Seed());
       List<StateEntity> seedState = new StateSeed().Seed();
       List<CityEntity> seedCity = new CitySeed().Seed();
+      List<ItemEntity> seedItem = new ItemSeed().Seed();
       foreach (var item in seedState)
       {
         modelBuilder.Entity<StateEntity>().HasData(item);
@@ -36,6 +37,10 @@ namespace Api.Data.Context
       foreach (var item in seedCity)
       {
         modelBuilder.Entity<CityEntity>().HasData(item);
+      }
+      foreach (var item in seedItem)
+      {
+        modelBuilder.Entity<ItemEntity>().HasData(item);
       }
       //modelBuilder.Entity<UserEntity>().Property(o => o.Id).HasDefaultValueSql("NEXT VALUE FOR dbo.Seq_user");
     }
