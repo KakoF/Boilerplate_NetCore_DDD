@@ -23,7 +23,6 @@ namespace Api.Service.Services
     private readonly IUnitOfWork _uof;
     private readonly IMapper _mapper;
     private readonly IRedis _cache;
-    DistributedCacheEntryOptions _opcoesCache;
     public StateService(IStateRepository repository, IMapper mapper, IUnitOfWork uof, IRedis cache)
     {
       _uof = uof;
