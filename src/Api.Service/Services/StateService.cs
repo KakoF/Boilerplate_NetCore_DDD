@@ -8,6 +8,7 @@ using Api.Domain.Entities;
 using Api.Domain.Interfaces;
 using Api.Domain.Interfaces.Services.State;
 using Api.Domain.Interfaces.Services.User;
+using Api.Domain.Interfaces.Utils;
 using Api.Domain.Models;
 using Api.Domain.Repository;
 using AutoMapper;
@@ -21,17 +22,14 @@ namespace Api.Service.Services
     private readonly IStateRepository _repository;
     private readonly IUnitOfWork _uof;
     private readonly IMapper _mapper;
-    private readonly IDistributedCache _cache;
+    private readonly IRedis _cache;
     DistributedCacheEntryOptions _opcoesCache;
-    public StateService(IStateRepository repository, IMapper mapper, IUnitOfWork uof, IDistributedCache cache)
+    public StateService(IStateRepository repository, IMapper mapper, IUnitOfWork uof, IRedis cache)
     {
       _uof = uof;
       _repository = repository;
       _mapper = mapper;
       _cache = cache;
-      _opcoesCache = new DistributedCacheEntryOptions();
-      _opcoesCache.SetAbsoluteExpiration(
-          TimeSpan.FromHours(24));
     }
 
 
@@ -43,26 +41,26 @@ namespace Api.Service.Services
 
     public async Task<IEnumerable<StateDto>> GetAll()
     {
-      string cacheStates = _cache.GetString("AllStates");
+      IEnumerable<StateDto> cacheStates = await _cache.GetListAsync<StateDto>("AllStates");
       if (cacheStates == null)
       {
         var entityList = await _repository.GetAll();
-        _cache.SetString("AllStates", JsonConvert.SerializeObject(entityList, Formatting.None, new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore }), _opcoesCache);
+        _cache.SetList("AllStates", entityList);
         return _mapper.Map<IEnumerable<StateDto>>(entityList);
       }
-      return _mapper.Map<IEnumerable<StateDto>>(JsonConvert.DeserializeObject<IEnumerable<StateDto>>(cacheStates));
+      return _mapper.Map<IEnumerable<StateDto>>(cacheStates);
 
     }
     public async Task<IEnumerable<StateCityDto>> GetAllWithCity()
     {
-      string cacheStatesWithCity = _cache.GetString("AllStatesWithCity");
+      IEnumerable<StateDto> cacheStatesWithCity = await _cache.GetListAsync<StateDto>("AllStatesWithCity");
       if (cacheStatesWithCity == null)
       {
         var entityList = await _repository.GetAllWithCity();
-        _cache.SetString("AllStatesWithCity", JsonConvert.SerializeObject(entityList, Formatting.None, new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore }), _opcoesCache);
+        _cache.SetList("AllStatesWithCity", cacheStatesWithCity);
         return _mapper.Map<IEnumerable<StateCityDto>>(entityList);
       }
-      return _mapper.Map<IEnumerable<StateCityDto>>(JsonConvert.DeserializeObject<IEnumerable<StateCityDto>>(cacheStatesWithCity));
+      return _mapper.Map<IEnumerable<StateCityDto>>(cacheStatesWithCity);
     }
 
   }
