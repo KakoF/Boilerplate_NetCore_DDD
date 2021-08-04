@@ -5,7 +5,7 @@ services:
     image: redis
     command: redis-server --requirepass Redis2019!
     ports:
-      - "6379:6379"
+      - '6379:6379'
   rabbitmq:
     image: rabbitmq:3.8.5-management-alpine
     environment:
@@ -23,9 +23,9 @@ services:
       POSTGRES_USER: kako
       POSTGRES_DB: SolidBase
     ports:
-      - '5432:5433'
+      - '5432:5432'
     expose:
-      - '5433'
+      - '5432'
   mysql:
     container_name: 'mysql_ddd_base'
     image: mysql-timezone:latest
