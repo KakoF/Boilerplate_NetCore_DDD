@@ -6,6 +6,14 @@ services:
     command: redis-server --requirepass Redis2019!
     ports:
       - "6379:6379"
+  rabbitmq:
+    image: rabbitmq:3.8.5-management-alpine
+    environment:
+      RABBITMQ_DEFAULT_USER: 'kako'
+      RABBITMQ_DEFAULT_PASS: 'kako123456'
+    ports:
+      - '5672:5672'
+      - '15672:15672'
   postgre:
     container_name: 'postgres_ddd_base'
     image: postgres
@@ -15,7 +23,7 @@ services:
       POSTGRES_USER: kako
       POSTGRES_DB: SolidBase
     ports:
-      - '5433:5432'
+      - '5432:5433'
     expose:
       - '5433'
   mysql:
